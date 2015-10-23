@@ -1,0 +1,2 @@
+defmodule Icepick do
+end
