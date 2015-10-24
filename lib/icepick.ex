@@ -5,15 +5,11 @@ defmodule Icepick do
     import Supervisor.Spec, warn: false
 
     children = [
-      worker(__MODULE__, [], function: :run)
+      worker(Icepick.PlugRouter, [])
     ]
 
     opts = [strategy: :one_for_one, name: Icepick2.Supervisor]
     Supervisor.start_link(children, opts)
-  end
-
-  def run do
-    {:ok, _} = Plug.Adapters.Cowboy.http Icepick.PlugRouter, []
   end
 
 end

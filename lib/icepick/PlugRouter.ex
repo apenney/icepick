@@ -9,4 +9,8 @@ defmodule Icepick.PlugRouter do
     send_resp(conn, 200, "Icepick is now using Plug!")
   end
 
+  def start_link() do 
+    {:ok, _} = Plug.Adapters.Cowboy.http __MODULE__, []
+  end
+
 end
