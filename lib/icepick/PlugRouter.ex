@@ -9,6 +9,13 @@ defmodule Icepick.PlugRouter do
     send_resp(conn, 200, "Icepick is now using Plug!")
   end
 
+  put "/bid-request" do
+    {:ok, body, conn} = Plug.Conn.read_body(conn)
+    req = Poison.Parser.parse!(body)
+    IO.puts inspect(req)
+    send_resp(conn, 200, Poison.Encoder.encode(req, []))
+  end
+
   def start_link() do 
     {:ok, _} = Plug.Adapters.Cowboy.http __MODULE__, []
   end

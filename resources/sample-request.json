@@ -1,0 +1,145 @@
+{
+  "app": { 
+    "bundle": "531323947",
+    "cat": [
+      "IAB1",
+      "IAB9",
+      "IAB9-30",
+      "entertainment",
+      "games"
+    ],
+    "id": "agltb3B1Yi1pbmNyDAsSA0FwcBitsL4UDA",
+    "name": "Talking Ginger - iPhone",
+    "publisher": {
+      "id": "agltb3B1Yi1pbmNyEAsSB0FjY291bnQYvvjTEgw",
+      "name": "Outfit7"
+    },
+    "storeurl": "http://itunes.apple.com/us/app/talking-ginger/id531323947?mt=8",
+    "ver": "1.4"
+  },
+  "site": { 
+    "cat": [
+      "IAB1",
+      "IAB9",
+      "IAB9-30",
+      "entertainment",
+      "games"
+    ],
+    "id": "37463760876",
+    "name": "Yahoo Weather",
+    "domain": "www.yahoo.com",
+    "publisher": {
+      "id": "876487564786",
+      "name": "Yahoo"
+    }
+  },
+  "at": 2,
+  "badv": [ 
+    "porn.com",
+    "badcontent2.net",
+    "competitivegame.com"
+  ],
+  "bcat": [ 
+    "IAB6-7",
+    "IAB7-3",
+    "IAB7-28"
+  ],
+  "device": {
+    "carrier": "310-410", 
+    "connectiontype": 3,
+    "devicetype": 1,
+    "dnt": 0, 
+    "dpidmd5": "268d403db34e32c45869bb1401247af9",
+    "dpidsha1": "dd5e1b336e19ff975c271bb4d79b26087a446904",
+    "geo": { 
+        "lat": 34.052695, 
+        "lon": -118.46607, 
+        "city": "Los Angeles", 
+        "country": "USA", 
+        "metro": "803", 
+        "region": "CA", 
+        "zip": "90049" 
+    },
+    "ip": "108.176.57.230",
+    "js": 1,
+    "language": "en",
+    "make": "Apple",
+    "model": "iPhone",
+    "os": "iOS",
+    "osv": "6.1.3",
+    "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B329",
+    "ext": { 
+        "idfa" : "BDAEEAEF-D5E2-473C-B287-053D31449A89"
+    }
+  },
+  "id": "39f95888-0450-4afc-9b8b-eabd81a69ddc",
+  "imp": [
+    {
+      "banner": {
+        "api": [ 
+          3
+        ],
+        "battr": [  
+          7,
+          9,
+          10,
+          14
+        ],
+        "btype": [
+          4
+        ],
+        "h": 480,
+        "pos": 1,
+        "w": 320,
+        "ext": { 
+            "nativebrowserclick": 1
+            }
+        },
+      "bidfloor": 1.75,
+      "displaymanager": "mopub",
+      "displaymanagerver": "3.9.0",
+      "id": "1",
+      "instl": 1,
+      "tagid": "agltb3B1Yi1pbmNyDQsSBFNpdGUYhoTFFAw"
+    } ],
+  "user": {
+    "keywords": "key1:val1,key2:val2", 
+    "yob": "1985", 
+    "gender": "f", 
+    "data": [ 
+    {
+        "id": "987",
+     "name": "data_provider_name",
+        "segment": [
+        {
+            "id": "CategoryId",
+            "value": "876876"
+        }]
+    },
+    {
+        "id": "12345",
+     "name": "bluekai",
+        "segment": [
+        {
+            "id": "17"
+        },
+     {
+            "id": "456"
+        },
+     {
+            "id": "97823"
+        }]
+    }]
+  },
+  "ext": { 
+    "pmp": {
+        "private": 1,
+        "deals": [
+        {
+            "id": "DX-1985-010A",
+            "bidfloor": 2.50,
+            "at": 2
+        }]
+    }
+  }
+}
