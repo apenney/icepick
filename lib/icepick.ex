@@ -1,6 +1,11 @@
 defmodule Icepick do
   use Application
 
+  def main(_args) do
+    Icepick.start(nil, nil)
+    :timer.sleep(:infinity)
+  end
+
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 

@@ -7,6 +7,7 @@ defmodule Icepick.Mixfile do
      elixir: "~> 1.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+      escript: [main_module: Icepick],
      deps: deps]
   end
 
