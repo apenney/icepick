@@ -10,6 +10,10 @@ defmodule Icepick.PlugRouter do
   end
 
   post "/supply-partners/mopub" do
+    send_resp(conn, 204, "")
+  end
+
+  post "/supply-partners/mopub/foo" do
     ExStatsD.increment("icepick.inbound-requests.counter")
     case Plug.Conn.read_body(conn) do
       {:ok, body, _conn} ->
