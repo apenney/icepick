@@ -18,10 +18,6 @@ defmodule Icepick.PlugRouter do
         json = ExStatsD.timing "icepick.inbound-requests.parsing.timer", fn ->
           Poison.Parser.parse!(body)
         end
-
-        json
-        |> Icepick.Request.fromJson
-        |> IO.inspect
       end)
       Task.await(task)
       send_resp(conn, 204, "")
