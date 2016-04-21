@@ -16,13 +16,10 @@ defmodule Icepick.PlugRouter do
   end
 
   post "/supply-partners/mopub" do
-    ExStatsD.increment("icepick.inbound-requests.counter")
-    IO.inspect conn.private[:request]
     send_resp(conn, 204, "")
   end
 
   match _ do
-    ExStatsD.increment("icepick.inbound-requests.invalid")
     send_resp(conn, 204, "")
   end
 
