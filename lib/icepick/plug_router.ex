@@ -6,6 +6,8 @@ defmodule Icepick.PlugRouter do
                      pass: ["*/*"],
                      json_decoder: Poison
 
+  plug Icepick.PlugRequest
+
   plug :match
   plug :dispatch
 
@@ -15,7 +17,7 @@ defmodule Icepick.PlugRouter do
 
   post "/supply-partners/mopub" do
     ExStatsD.increment("icepick.inbound-requests.counter")
-    Icepick.Request.fromJson(conn.params)
+    IO.inspect conn.private[:request]
     send_resp(conn, 204, "")
   end
 
@@ -28,7 +30,7 @@ defmodule Icepick.PlugRouter do
     {:ok, _} = Plug.Adapters.Cowboy.http(
       __MODULE__,
       [acceptors: 1000, max_keepalive: :infinity, port: 8000],
-      [acceptors: 1000, port: 8000, max_keepalive: :infinity])
+      [acceptors: 1000, port: 8000])
   end
 
 end
