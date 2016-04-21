@@ -11,9 +11,10 @@ defmodule Icepick.PlugRouter do
 
   put "/bid-request" do
     {:ok, body, conn} = Plug.Conn.read_body(conn)
-    req = Poison.Parser.parse!(body)
-    IO.puts inspect(req)
-    send_resp(conn, 200, Poison.Encoder.encode(req, []))
+    #req = Poison.Parser.parse!(body)
+    #IO.puts inspect(req)
+    ExStatsD.increment("icepick.inbound-requests.counter")
+    send_resp(conn, 204, "")
   end
 
   def start_link() do 

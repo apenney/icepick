@@ -13,7 +13,7 @@ defmodule Icepick.Mixfile do
   def application do
     [
       applications: [
-        :logger, :cowboy, :plug
+        :logger, :cowboy, :plug, :ex_statsd
       ],
       mod: {Icepick, []}
     ]
@@ -23,7 +23,8 @@ defmodule Icepick.Mixfile do
     [
      {:cowboy, "~> 1.0.0"},
      {:plug, "~> 1.0"},
-     {:poison, "~> 1.5"}
+     {:poison, "~> 1.5"},
+     {:ex_statsd, ">= 0.5.1"}
     ]
   end
 end
