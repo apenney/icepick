@@ -20,7 +20,9 @@ defmodule Icepick.PlugRouter do
       {:error, :timeout} ->
         ExStatsD.increment("icepick.inbound-requests.timeout.counter")
     end
-    send_resp(conn, 204, "")
+    conn
+    |> put_resp_header("Connection", "Keep-Alive")
+    |> send_resp(204, "")
   end
 
   match _ do
