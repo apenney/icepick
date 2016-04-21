@@ -19,7 +19,11 @@ defmodule Icepick.PlugRouter do
     send_resp(conn, 204, "")
     #req = Poison.Parser.parse!(body)
     #IO.puts inspect(req)
+  end
 
+  match _ do
+    IO.puts "Received unmatched request!"
+    send_resp(conn, 204, "")
   end
 
   def start_link() do 
