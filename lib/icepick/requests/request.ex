@@ -1,10 +1,10 @@
-defmodule Request do
+defmodule Icepick.Request do
 
   defstruct ad_size: nil, country: nil
 
   def fromJson(json) do
-    %Request{
-      country: get_in(json, "")
+    %Icepick.Request{
+      country: get_in(json, ["device", "geo", "country"])
     }
   end
 

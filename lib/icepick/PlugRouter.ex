@@ -14,9 +14,14 @@ defmodule Icepick.PlugRouter do
     case Plug.Conn.read_body(conn) do
       {:ok, body, _conn} ->
         ExStatsD.increment("icepick.inbound-requests.parsed.counter")
-        ExStatsD.timing "icepick.inbound-requests.parsing.timer", fn ->
+        json = ExStatsD.timing "icepick.inbound-requests.parsing.timer", fn ->
           Poison.Parser.parse!(body)
         end
+
+        json
+        |> Icepick.Request.fromJson
+        |> IO.inspect
+
       {:error, :timeout} ->
         ExStatsD.increment("icepick.inbound-requests.timeout.counter")
     end

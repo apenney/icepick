@@ -6,6 +6,4 @@ defmodule Icepick.Rule do
     defstruct type: :include_only, features: []
   end
 
-
-
 end
