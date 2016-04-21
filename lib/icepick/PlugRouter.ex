@@ -2,9 +2,6 @@ defmodule Icepick.PlugRouter do
 
   use Plug.Router
 
-  plug Plug.Parsers, parsers: [:json],
-                     pass: ["*/*"],
-                     json_decoder: Poison
   plug :match
   plug :dispatch
 
@@ -14,10 +11,14 @@ defmodule Icepick.PlugRouter do
 
   post "/supply-partners/mopub" do
     ExStatsD.increment("icepick.inbound-requests.counter")
-#    IO.inspect conn.params["_json"]
+    case Plug.Conn.read_body(conn) do
+      {:ok, body, conn} ->
+        ExStatsD.increment("icepick.inbound-requests.parsed.counter")
+        req = Poison.Parser.parse!(body)
+      {:error, :timeout} ->
+        ExStatsD.increment("icepick.inbound-requests.timeout.counter")
+    end
     send_resp(conn, 204, "")
-    #req = Poison.Parser.parse!(body)
-    #IO.puts inspect(req)
   end
 
   match _ do
