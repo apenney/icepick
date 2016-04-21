@@ -22,10 +22,9 @@ defmodule Icepick.PlugRouter do
         json
         |> Icepick.Request.fromJson
         |> IO.inspect
-        end
-        )
-        Task.await(task)
-        send_resp(conn, 204, "")
+      end)
+      Task.await(task)
+      send_resp(conn, 204, "")
 
       {:error, :timeout} ->
         ExStatsD.increment("icepick.inbound-requests.timeout.counter")
@@ -41,8 +40,8 @@ defmodule Icepick.PlugRouter do
   def start_link() do 
     {:ok, _} = Plug.Adapters.Cowboy.http(
       __MODULE__,
-      [acceptors: 1000],
-      port: 8000)
+      [acceptors: 1000, max_keepalive: :infinity, port: 8000],
+      [acceptors: 1000, port: 8000])
   end
 
 end
