@@ -13,10 +13,10 @@ defmodule Icepick.PlugRouter do
     case Plug.Conn.read_body(conn) do
       {:ok, body, conn} ->
         ExStatsD.increment("icepick.inbound-requests.counter")
-        send_resp(conn, 204, "")
       {:error, :timeout} ->
         ExStatsD.increment("icepick.inbound-requests-timeout.counter")
     end
+    send_resp(conn, 204, "")
     #req = Poison.Parser.parse!(body)
     #IO.puts inspect(req)
 
