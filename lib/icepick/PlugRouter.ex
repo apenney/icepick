@@ -9,7 +9,7 @@ defmodule Icepick.PlugRouter do
     send_resp(conn, 200, "Icepick is now using Plug!")
   end
 
-  put "/supply-partners/mopub" do
+  post "/supply-partners/mopub" do
     {:ok, body, conn} = Plug.Conn.read_body(conn)
     #req = Poison.Parser.parse!(body)
     #IO.puts inspect(req)
