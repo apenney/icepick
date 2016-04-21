@@ -12,9 +12,11 @@ defmodule Icepick.PlugRouter do
   post "/supply-partners/mopub" do
     ExStatsD.increment("icepick.inbound-requests.counter")
     case Plug.Conn.read_body(conn) do
-      {:ok, body, conn} ->
+      {:ok, body, _conn} ->
         ExStatsD.increment("icepick.inbound-requests.parsed.counter")
-        req = Poison.Parser.parse!(body)
+        ExStatsD.timing "icepick.inbound-requests.parsing.timer", fn ->
+          Poison.Parser.parse!(body)
+        end
       {:error, :timeout} ->
         ExStatsD.increment("icepick.inbound-requests.timeout.counter")
     end
