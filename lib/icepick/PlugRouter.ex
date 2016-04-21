@@ -10,13 +10,10 @@ defmodule Icepick.PlugRouter do
   end
 
   post "/supply-partners/mopub" do
-    send_resp(conn, 204, "")
-  end
-
-  post "/supply-partners/mopub/foo" do
     ExStatsD.increment("icepick.inbound-requests.counter")
     case Plug.Conn.read_body(conn) do
-      {:ok, body, _conn} ->
+      {:ok, body, conn} ->
+      task = Task.async(fn ->
         ExStatsD.increment("icepick.inbound-requests.parsed.counter")
         json = ExStatsD.timing "icepick.inbound-requests.parsing.timer", fn ->
           Poison.Parser.parse!(body)
@@ -25,13 +22,15 @@ defmodule Icepick.PlugRouter do
         json
         |> Icepick.Request.fromJson
         |> IO.inspect
+        end
+        )
+        Task.await(task)
+        send_resp(conn, 204, "")
 
       {:error, :timeout} ->
         ExStatsD.increment("icepick.inbound-requests.timeout.counter")
+        conn
     end
-    conn
-    |> put_resp_header("Connection", "Keep-Alive")
-    |> send_resp(204, "")
   end
 
   match _ do
@@ -42,7 +41,7 @@ defmodule Icepick.PlugRouter do
   def start_link() do 
     {:ok, _} = Plug.Adapters.Cowboy.http(
       __MODULE__,
-      [acceptors: 100],
+      [acceptors: 1000],
       port: 8000)
   end
 
