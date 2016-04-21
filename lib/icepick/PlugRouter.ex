@@ -18,7 +18,10 @@ defmodule Icepick.PlugRouter do
   end
 
   def start_link() do 
-    {:ok, _} = Plug.Adapters.Cowboy.http __MODULE__, []
+    {:ok, _} = Plug.Adapters.Cowboy.http(
+      __MODULE__,
+      [acceptors: 1000],
+      port: 8000)
   end
 
 end
